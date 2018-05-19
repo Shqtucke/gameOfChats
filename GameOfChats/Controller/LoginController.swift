@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Firebase
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
     
     let inputsContainerView: UIView = {
         let view = UIView()
@@ -19,15 +20,37 @@ class LoginController: UIViewController {
         return view
     }()
     
-    let loginRegisterButton: UIButton = {
+    lazy var loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(r: 80, g: 101, b: 151)
         button.setTitle("Register", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleRegister() {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            print("Form is not valid")
+            return
+        }
+        Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error) in
+            if error != nil {
+                print(error)
+                
+                return
+            }
+            //successfully authenticated user
+            
+        }
+      
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     let nameTextField: UITextField = {
         let tf = UITextField()
@@ -78,6 +101,8 @@ class LoginController: UIViewController {
         view.addSubview(loginRegisterButton)
         view.addSubview(profileImageView)
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+        
+        self.passwordTextField.delegate = self
         
         setupInputsContainerView()
         setupLoginRegisterButton()

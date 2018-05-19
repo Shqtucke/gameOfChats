@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.rootViewController = UINavigationController(rootViewController: ViewController())
         FirebaseApp.configure()
+        
+        
         return true
     }
 
