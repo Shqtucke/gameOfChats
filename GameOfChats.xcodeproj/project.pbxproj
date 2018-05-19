@@ -12,6 +12,8 @@
 		DCC58DD520B07693003C095C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC58DD320B07693003C095C /* Main.storyboard */; };
 		DCC58DD720B07698003C095C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC58DD620B07698003C095C /* Assets.xcassets */; };
 		DCC58DDA20B07698003C095C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC58DD820B07698003C095C /* LaunchScreen.storyboard */; };
+		DCC58DE320B07999003C095C /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC58DE220B07999003C095C /* LoginController.swift */; };
+		DCC58DE520B0999F003C095C /* onceMore.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DCC58DE420B0999F003C095C /* onceMore.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		DCC58DD620B07698003C095C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCC58DD920B07698003C095C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DCC58DDB20B07698003C095C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCC58DE220B07999003C095C /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		DCC58DE420B0999F003C095C /* onceMore.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = onceMore.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,7 @@
 			children = (
 				DCC58DCE20B07693003C095C /* GameOfChats */,
 				DCC58DCD20B07693003C095C /* Products */,
+				DCC58DE420B0999F003C095C /* onceMore.jpg */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +59,23 @@
 		DCC58DCE20B07693003C095C /* GameOfChats */ = {
 			isa = PBXGroup;
 			children = (
+				DCC58DE120B07977003C095C /* Controller */,
 				DCC58DCF20B07693003C095C /* AppDelegate.swift */,
-				DCC58DD120B07693003C095C /* ViewController.swift */,
 				DCC58DD320B07693003C095C /* Main.storyboard */,
 				DCC58DD620B07698003C095C /* Assets.xcassets */,
 				DCC58DD820B07698003C095C /* LaunchScreen.storyboard */,
 				DCC58DDB20B07698003C095C /* Info.plist */,
 			);
 			path = GameOfChats;
+			sourceTree = "<group>";
+		};
+		DCC58DE120B07977003C095C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DCC58DD120B07693003C095C /* ViewController.swift */,
+				DCC58DE220B07999003C095C /* LoginController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +139,7 @@
 				DCC58DDA20B07698003C095C /* LaunchScreen.storyboard in Resources */,
 				DCC58DD720B07698003C095C /* Assets.xcassets in Resources */,
 				DCC58DD520B07693003C095C /* Main.storyboard in Resources */,
+				DCC58DE520B0999F003C095C /* onceMore.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCC58DD220B07693003C095C /* ViewController.swift in Sources */,
+				DCC58DE320B07999003C095C /* LoginController.swift in Sources */,
 				DCC58DD020B07693003C095C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
