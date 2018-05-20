@@ -107,20 +107,43 @@ class LoginController: UIViewController, UITextFieldDelegate {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-
+    
+    lazy var loginRegisterSegmentControl: UISegmentedControl = {
+        let sc = UISegmentedControl(items: ["Login", "Register"])
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        sc.tintColor = UIColor.white
+        sc.selectedSegmentIndex = 1
+        sc.addTarget(self, action: #selector(handleLoginRegisterChange), for: .valueChanged)
+        return sc
+    }()
+    
+    @objc func handleLoginRegisterChange() {
+        let title = loginRegisterSegmentControl.titleForSegment(at: loginRegisterSegmentControl.selectedSegmentIndex)
+        loginRegisterButton.setTitle(title, for: .normal)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
         view.addSubview(profileImageView)
+        view.addSubview(loginRegisterSegmentControl)
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
         
         self.passwordTextField.delegate = self
+        self.emailTextField.keyboardType = UIKeyboardType.emailAddress
         
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupProfileImageView()
+        setupLoginRegisterSegmentedControl()
+        
+    }
+    func setupLoginRegisterSegmentedControl() {
+        loginRegisterSegmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginRegisterSegmentControl.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true
+        loginRegisterSegmentControl.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: 0.5).isActive = true
+        loginRegisterSegmentControl.heightAnchor.constraint(equalToConstant: 36).isActive = true
     }
     
     func setupProfileImageView() {
