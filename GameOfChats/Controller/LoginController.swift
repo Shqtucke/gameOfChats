@@ -28,9 +28,25 @@ class LoginController: UIViewController, UITextFieldDelegate {
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleLoginRegister() {
+        if loginRegisterSegmentControl.selectedSegmentIndex == 0 {
+            handleLogin()
+        } else {
+            handleRegister()
+        }
+    }
+    
+    func handleLogin() {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            print("Form is not valid")
+            return
+        }
+        
+    }
     
     @objc func handleRegister() {
         guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
@@ -39,7 +55,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         }
         Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error) in
             if error != nil {
-                print(error)
+                print(error!)
                 
                 return
             }
@@ -53,10 +69,11 @@ class LoginController: UIViewController, UITextFieldDelegate {
             let values = ["name" : name, "email" : email]
             usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                 if err != nil {
-                    print(err)
+                    print(err!)
                     return
                 }
-                print("Saved user successfully into Firebase")
+                self.dismiss(animated: true, completion: nil)
+                //print("Saved user successfully into Firebase")
             })
             
         }
@@ -152,11 +169,17 @@ class LoginController: UIViewController, UITextFieldDelegate {
         self.passwordTextField.delegate = self
         self.emailTextField.keyboardType = UIKeyboardType.emailAddress
         
+        
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupProfileImageView()
         setupLoginRegisterSegmentedControl()
+        textFieldShouldReturn(passwordTextField)
         
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.passwordTextField.resignFirstResponder()
+        return true
     }
     func setupLoginRegisterSegmentedControl() {
         loginRegisterSegmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
