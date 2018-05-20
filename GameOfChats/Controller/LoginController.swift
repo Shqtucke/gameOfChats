@@ -120,6 +120,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
     @objc func handleLoginRegisterChange() {
         let title = loginRegisterSegmentControl.titleForSegment(at: loginRegisterSegmentControl.selectedSegmentIndex)
         loginRegisterButton.setTitle(title, for: .normal)
+        
+        inputsContainerViewHeightAnchor?.constant = loginRegisterSegmentControl.selectedSegmentIndex == 0 ? 100 : 150
     }
 
     override func viewDidLoad() {
@@ -153,12 +155,15 @@ class LoginController: UIViewController, UITextFieldDelegate {
         profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = false
     }
     
+    var inputsContainerViewHeightAnchor: NSLayoutConstraint?
+    
     func setupInputsContainerView() {
         //need x, y, width and height constraints
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        inputsContainerViewHeightAnchor = inputsContainerView.heightAnchor.constraint(equalToConstant: 150)
+        inputsContainerViewHeightAnchor?.isActive = true
         
         inputsContainerView.addSubview(nameTextField)
         inputsContainerView.addSubview(nameSeperatorView)
