@@ -45,7 +45,14 @@ class LoginController: UIViewController, UITextFieldDelegate {
             print("Form is not valid")
             return
         }
-        
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     //MARK: - FIREBASE AUTH
     @objc func handleRegister() {
