@@ -47,7 +47,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
+    //MARK: - FIREBASE AUTH
     @objc func handleRegister() {
         guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
             print("Form is not valid")
@@ -83,6 +83,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    //MARK: - UIs
     let nameTextField: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Name"
@@ -157,7 +158,7 @@ class LoginController: UIViewController, UITextFieldDelegate {
         
         
     }
-
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(inputsContainerView)
@@ -181,6 +182,8 @@ class LoginController: UIViewController, UITextFieldDelegate {
         self.passwordTextField.resignFirstResponder()
         return true
     }
+    
+    //MARK: - CONSTRAINTS
     func setupLoginRegisterSegmentedControl() {
         loginRegisterSegmentControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loginRegisterSegmentControl.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true
