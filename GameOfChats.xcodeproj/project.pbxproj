@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		034D4E756CBBF687F8E33C2A /* Pods_GameOfChats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC8CD6496524C83B4F91D940 /* Pods_GameOfChats.framework */; };
 		DCC58DD020B07693003C095C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC58DCF20B07693003C095C /* AppDelegate.swift */; };
-		DCC58DD220B07693003C095C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC58DD120B07693003C095C /* ViewController.swift */; };
+		DCC58DD220B07693003C095C /* MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC58DD120B07693003C095C /* MessageController.swift */; };
 		DCC58DD520B07693003C095C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC58DD320B07693003C095C /* Main.storyboard */; };
 		DCC58DD720B07698003C095C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCC58DD620B07698003C095C /* Assets.xcassets */; };
 		DCC58DDA20B07698003C095C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCC58DD820B07698003C095C /* LaunchScreen.storyboard */; };
@@ -23,7 +23,7 @@
 		8826EA90466ADF56885E19B2 /* Pods-GameOfChats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameOfChats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GameOfChats/Pods-GameOfChats.debug.xcconfig"; sourceTree = "<group>"; };
 		DCC58DCC20B07693003C095C /* GameOfChats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfChats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC58DCF20B07693003C095C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DCC58DD120B07693003C095C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DCC58DD120B07693003C095C /* MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageController.swift; sourceTree = "<group>"; };
 		DCC58DD420B07693003C095C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCC58DD620B07698003C095C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DCC58DD920B07698003C095C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				DCC58DE220B07999003C095C /* LoginController.swift */,
-				DCC58DD120B07693003C095C /* ViewController.swift */,
+				DCC58DD120B07693003C095C /* MessageController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCC58DD220B07693003C095C /* ViewController.swift in Sources */,
+				DCC58DD220B07693003C095C /* MessageController.swift in Sources */,
 				DCC58DE320B07999003C095C /* LoginController.swift in Sources */,
 				DCC58DD020B07693003C095C /* AppDelegate.swift in Sources */,
 			);
