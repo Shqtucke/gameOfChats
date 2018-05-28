@@ -80,7 +80,7 @@ class LoginController: UIViewController, UITextFieldDelegate, UIImagePickerContr
                     return
                 }
                 self.dismiss(animated: true, completion: nil)
-                //print("Saved user successfully into Firebase")
+                
             })
             
         }
@@ -125,7 +125,18 @@ class LoginController: UIViewController, UITextFieldDelegate, UIImagePickerContr
         return tf
     }()
     
-    lazy var profileImageView: UIView =  {
+//    let profileImageView: UIImageView =  {
+//        let imageView = UIImageView()
+//        imageView.image = UIImage(named: "onceMore.jpg")
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.contentMode = .scaleAspectFill
+//        //imageView.gestureRecognizers?.removeAll()
+//        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+//        imageView.isUserInteractionEnabled = true
+//        return imageView
+//    }()
+    //Second Try
+    let profileImageTwo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "onceMore.jpg")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -145,28 +156,14 @@ class LoginController: UIViewController, UITextFieldDelegate, UIImagePickerContr
     }()
     @objc func handleSelectProfileImageView() {
         let picker = UIImagePickerController()
-        
+
         picker.delegate = self
-        
+        picker.allowsEditing = true
+
         present(picker, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        if let originalImage = info["UIImagePickerControllerOriginalImage"] {
-            print(originalImage)
-        }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("canceled picker")
-        dismiss(animated: true, completion: nil)
-    }
-
-
-    
-    @objc func handleLoginRegisterChange() {
+@objc func handleLoginRegisterChange() {
         let title = loginRegisterSegmentControl.titleForSegment(at: loginRegisterSegmentControl.selectedSegmentIndex)
         loginRegisterButton.setTitle(title, for: .normal)
         
@@ -194,13 +191,12 @@ class LoginController: UIViewController, UITextFieldDelegate, UIImagePickerContr
         super.viewDidLoad()
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
-        view.addSubview(profileImageView)
+        view.addSubview(profileImageTwo)
         view.addSubview(loginRegisterSegmentControl)
         view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
         
         self.passwordTextField.delegate = self
         self.emailTextField.keyboardType = UIKeyboardType.emailAddress
-        
         
         setupInputsContainerView()
         setupLoginRegisterButton()
@@ -209,6 +205,33 @@ class LoginController: UIViewController, UITextFieldDelegate, UIImagePickerContr
         textFieldShouldReturn(passwordTextField)
         
     }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+
+        var selectedImageFromPicker: UIImage?
+
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+
+            selectedImageFromPicker = editedImage
+
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+
+            selectedImageFromPicker = originalImage
+
+        }
+
+        if let selectedImage = selectedImageFromPicker {
+            profileImageTwo.image = selectedImage
+
+        }
+
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("canceled picker")
+        dismiss(animated: true, completion: nil)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.passwordTextField.resignFirstResponder()
         return true
@@ -222,12 +245,21 @@ class LoginController: UIViewController, UITextFieldDelegate, UIImagePickerContr
         loginRegisterSegmentControl.heightAnchor.constraint(equalToConstant: 36).isActive = true
     }
     
-    func setupProfileImageView() {
-        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -100).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 550).isActive = false
-        profileImageView.heightAnchor.constraint(equalToConstant: 550).isActive = false
-    }
+//    func setupProfileImageView() {
+//        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        profileImageView.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -100).isActive = true
+//        profileImageView.widthAnchor.constraint(equalToConstant: 550).isActive = false
+//        profileImageView.heightAnchor.constraint(equalToConstant: 550).isActive = false
+//    }
+    
+        func setupProfileImageView() {
+            profileImageTwo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            profileImageTwo.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -100).isActive = true
+            profileImageTwo.widthAnchor.constraint(equalToConstant: 550).isActive = false
+            profileImageTwo.heightAnchor.constraint(equalToConstant: 550).isActive = false
+        }
+
+
     
     var inputsContainerViewHeightAnchor: NSLayoutConstraint?
     var nameTextFieldHeightAnchor: NSLayoutConstraint?
