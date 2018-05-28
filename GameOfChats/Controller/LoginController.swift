@@ -200,9 +200,9 @@ class LoginController: UIViewController, UITextFieldDelegate {
     
     func setupProfileImageView() {
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -12).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = false
-        profileImageView.heightAnchor.constraint(equalToConstant: 150).isActive = false
+        profileImageView.bottomAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: -100).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 550).isActive = false
+        profileImageView.heightAnchor.constraint(equalToConstant: 550).isActive = false
     }
     
     var inputsContainerViewHeightAnchor: NSLayoutConstraint?

@@ -12,9 +12,4 @@ class UserO: NSObject {
     var name: String?
     var email: String?
     
-//    init(_ dictionary: [String: Any]) {
-//        super.init()
-//        setValuesForKeys(dictionary)
-//    }
-    
 }
