@@ -12,6 +12,10 @@ import Firebase
 class NewMessageController: UITableViewController {
 
     let cellid = "cellid"
+    var users = [UserO]()
+    
+    var dbReference: DatabaseReference?
+    var dbHandle: DatabaseHandle?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +28,27 @@ class NewMessageController: UITableViewController {
     //MARK: - VERY IMPORTANT!!!
     func fetchUser() {
         
+//        Database.database().reference().child("users").observe(.childAdded) { (snapshot: DataSnapshot) in
+//
+//           print(snapshot.value)
+//
+//        }
+
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
-            print(snapshot)
+
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let user = UserO()
+                //user.setValuesForKeys(dictionary)
+                user.name = (dictionary["name"] as! String)
+                user.email = dictionary["email"] as? String
+                self.users.append(user)
+                DispatchQueue.main.async() {
+                    self.tableView.reloadData()
+                }
+              print(user.name!, user.email!)
+            }
+//            print("user found")
+//            print(snapshot)
         }, withCancel: nil)
     }
 
@@ -34,14 +57,16 @@ class NewMessageController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return users.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellid)
         
-        cell.textLabel?.text = "Shawn will succeed"
+        let user = users[indexPath.row]
+        cell.textLabel?.text = user.name
+        cell.detailTextLabel?.text = user.email
         
         return cell
     }

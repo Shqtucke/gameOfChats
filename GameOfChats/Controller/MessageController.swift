@@ -39,7 +39,7 @@ class MessageController: UITableViewController {
         } else {
             let uid = Auth.auth().currentUser?.uid
             Database.database().reference().child("users").child(uid!).observe(.value, with: { (snapshot) in
-                print(snapshot)
+                //print(snapshot)
                 if let dictionary = snapshot.value as? [String: AnyObject] {
                     self.navigationItem.title = dictionary["name"] as? String 
                 }
@@ -57,7 +57,6 @@ class MessageController: UITableViewController {
             
             print(logoutError)
         }
-        
         
         let loginController = LoginController()
         present(loginController, animated: true, completion: nil)
